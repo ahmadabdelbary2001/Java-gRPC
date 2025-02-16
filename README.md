@@ -1,7 +1,12 @@
 # Java gRPC Book Service Application
 
 ## Overview
-This project is a full-stack gRPC-based application that implements a book service. It consists of a server and a client that communicate over a network. The server manages a collection of books and provides RPC methods for creating a new book and retrieving a book by its ISBN, while the client demonstrates how to build, encode, decode, and convert book objects using Protocol Buffers and gRPC. Additionally, the project includes tests to compare the sizes of serialized messages in Protobuf and JSON formats.
+This project is a full-stack gRPC-based application that implements a book service. It consists of a server and a client that communicate over a network using Protocol Buffers. The server manages a collection of books and provides RPC methods for creating a new book and retrieving a book by its ISBN, while the client demonstrates how to build, encode, decode, and convert book objects. The project also includes unit tests to compare the sizes of serialized messages in Protobuf and JSON formats.
+
+## Technical Stack
+- Java
+- gRPC
+- Protocol Buffers
 
 ## Features
 
@@ -48,4 +53,24 @@ book.json:
 book.proto (snippet):
 - A snippet showing the serialized form of a book message.
 
-### Build Configuration
+## Getting Started
+
+### Prerequisites
+- Java 21 or higher
+- Maven
+- gRPC tools (e.g., protoc compiler for generating Java files from .proto definitions)
+
+### Installation
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/ahmadabdelbary2001/Java-gRPC.git
+   ```
+2. **Generate Java Files from .proto**
+   ```bash
+   protoc --java_out=src/main/java proto/book.proto
+   protoc --grpc-java_out=src/main/java proto/book.proto
+   ```
+3. **Build the project**
+   ```bash
+   mvn clean install
+   ```
