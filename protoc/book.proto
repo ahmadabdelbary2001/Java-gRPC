@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.example.protoFiles";
+
+message Books {
+  repeated Book books = 1;
+}
+
+message Book {
+  string title = 1;
+  string author = 2;
+  string isbn = 3;
+  int32 publicationYear = 4;
+
+  // Enum for book category
+  enum Category {
+    UNKNOWN = 0;           // Default value
+    FICTION = 1;           // Fiction category
+    NON_FICTION = 2;       // Non-fiction category
+    SCIENCE = 3;           // Science category
+    HISTORY = 4;           // History category
+  }
+
+  Category category = 5; // Genre of the book
+
+  // Nested message for Publisher information
+  message Publisher {
+    string name = 1;
+    string location = 2;
+  }
+
+  Publisher publisher = 6;
+}
+
+// Service to exchange book data
+service BookService {
+  // RPC method to get details of a book by ISBN
+  rpc GetBookByISBN (ISBNRequest) returns (BookResponse);
+
+  // RPC method to create or add a book to the collection
+  rpc CreateBook (Book) returns (BookResponse);
+}
+
+message ISBNRequest {
+  string isbn = 1;
+}
+
+message BookResponse {
+  string message = 1; // Status message like success or failure
+  Book book = 2;      // Book information
+}
